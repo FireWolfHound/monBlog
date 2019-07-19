@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les Articles{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-md-center">
+            {% for post in posts %}
+                {% set url = path('post_show', {id: post.id, slug: post.slug}) %}
+                <div class="col-md-8">
+                    <h1>{{ post.title }}</h1>
+                    <p>{{ post.content }}</p>
+                    <div class="text-right">
+                        <a href="{{ url }}" class="btn btn-secondary">En savoir plus</a>
+                    </div>
+                    <hr>
+                    {% if loop.last %}
+
+                    {% else %}
+                        <br>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

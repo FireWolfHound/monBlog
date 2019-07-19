@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block body %}
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.content }}</p>
+    <a class="btn btn-primary btn-lg" href="{{ path('post_edit', {id: post.id, slug: post.slug}) }}" role="button">Modifier l'article</a>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mb-3">
+                <div class="carousel slide" data-ride="carousel" id="carouselExampleIndicators">
+                    <ol class="carousel-indicators">
+                        {% for image in post.images %}
+                            <li class="{% if loop.first %}active{% endif %}" data-slide-to="{{ loop.index0 }}" data-target="#carouselExampleIndicators"></li>
+                        {% endfor %}
+                    </ol>
+                    <div class="carousel-inner">
+                        {% for image in post.images %}
+                            <div class="carousel-item {% if loop.first %}active{% endif %}">
+                                <img alt="..." class="d-block w-100" src="{{ image.url }}">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>{{ post.title }}</h5>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <a class="carousel-control-prev" data-slide="prev" href="#carouselExampleIndicators" role="button">
+                        <span aria-hidden="true" class="carousel-control-prev-icon"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" data-slide="next" href="#carouselExampleIndicators" role="button">
+                        <span aria-hidden="true" class="carousel-control-next-icon"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

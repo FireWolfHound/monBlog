@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="mt-4 jumbotron">
+        <h1 class="display-3">Bienvenue sur MonBlog</h1>
+        <p class="lead">Poster vos articles</p>
+        <hr class="my-4">
+        <p>Actuellement nous avons déja <strong>{{ nbrPost }}</strong> article(s) sur le site</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="#" role="button">Plus</a>
+        </p>
+    </div>
+    <div class="row">
+        {% for post in lastPost %}
+            {% set url = path('post_show', {id: post.id, slug: post.slug}) %}
+            <div class="col-md-8">
+                <h1>{{ post.title }}</h1>
+                <p>{{ post.content }}</p>
+                <div class="text-right">
+                    <a href="{{ url }}" class="btn btn-secondary">En savoir plus</a>
+                </div>
+                <hr>
+                {% if loop.last %}
+
+                {% else %}
+                    <br>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

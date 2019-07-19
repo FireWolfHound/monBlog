@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {% if editMode %}
+        Modification
+    {% else %}
+        Création
+    {% endif %}
+     d'un article
+{% endblock %}
+
+{% form_theme form "post/_collection.html.twig" %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="text-center">
+            {% if editMode %}
+                Modification de {{ postTitle }}
+            {% else %}
+                Création d'un article
+            {% endif %}
+        </h1>
+
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit" class="btn btn-primary">
+            {% if editMode %}
+                Modifier
+            {% else %}
+                Créer
+            {% endif %}
+             l'annonce
+        </button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+
+{% block javascripts %}
+    <script src="/js/post.js"></script>
+{% endblock %}

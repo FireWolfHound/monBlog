@@ -1,0 +1,32 @@
+{% block _post_images_widget %}
+    {#Nom de ce bloc car c'est l'id du bloc html quand c'est crée. Norm: _{ID}_widget #}
+    {{ form_widget(form) }}
+
+    <input type="hidden" id="widgets-counter" value="0">
+
+    <div class="form-group">
+        <button type="button" class="btn btn-warning" id="add-image">Ajouter une image</button>
+    </div>
+{% endblock %}
+
+    {% block _post_images_entry_row %}
+        {{ form_widget(form) }}
+    {% endblock %}
+
+    {% block _post_images_entry_widget %}
+        <div class="form-group" id="block_{{id}}">
+            <div class="row">
+                <div class="col-10">
+                    <div class="row">
+                        <div class="col-5">
+                            {{ form_label(form.url, 'URL' ) }}
+                            {{ form_widget(form.url)}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-danger" data-target="#block_{{ id }}" data-action="delete" style="position: absolute; bottom: 0">X</button>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
