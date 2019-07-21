@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Post;
 use App\Form\PostType;
 use App\Repository\PostRepository;
+use App\Service\Pagination;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,13 +14,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class PostController extends AbstractController
 {
     /**
-     * @Route("/post", name="post")
+     * @Route("/post/{page<\d+>?1}", name="post")
      */
-    public function index(PostRepository $repo)
+    public function index(PostRepository $repo, Pagination $utils, $page)
     {
-        $post = $repo->findAll();
+        $pagination = $utils->pagination($repo, 6, $page);
+
         return $this->render('post/index.html.twig', [
-            'posts' => $post,
+            'page' => $page,
+            'pagination' => $pagination
         ]);
     }
 

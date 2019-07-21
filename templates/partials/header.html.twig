@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">Mon Blog</a>
+    <a class="navbar-brand" href="{{ path('home') }}">Mon Blog</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -24,7 +24,7 @@
     </div>
 </nav>
 
-{#
+
 {% for label, messages in app.flashes %}
     <div class="container">
         <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
@@ -36,4 +36,4 @@
             {% endfor %}
         </div>
     </div>
-{% endfor %}#}
+{% endfor %}
